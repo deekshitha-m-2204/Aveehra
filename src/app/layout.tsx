@@ -52,17 +52,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AVEEHRA | Pioneering India's Circular Uniform Ecosystem",
     description:
-      "A uniform is never merely a piece of cloth. Pioneering India's circular uniform movement from Mysuru, Karnataka.",
+      "Pioneering India's circular uniform ecosystem built around Respect, Sustainability, and Social Impact.",
     url: "https://aveehra.com",
     siteName: "AVEEHRA",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/images/hero-craft.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Aveehra Circular Uniform Craftsmanship",
+        url: "/images/aveehra-brand-logo.png",
+        width: 1024,
+        height: 576,
+        alt: "AVEEHRA - Pioneering India's Circular Uniform Ecosystem",
       },
     ],
   },
@@ -70,8 +70,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AVEEHRA | Pioneering India's Circular Uniform Ecosystem",
     description:
-      "A uniform is never merely a piece of cloth. Respect → Extend → Reuse → Recycle.",
-    images: ["/images/hero-craft.jpg"],
+      "Pioneering India's circular uniform ecosystem. Respect → Extend → Reuse → Recycle.",
+    images: ["/images/aveehra-brand-logo.png"],
   },
   robots: {
     index: true,

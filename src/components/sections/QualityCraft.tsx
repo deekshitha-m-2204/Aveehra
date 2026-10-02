@@ -104,7 +104,7 @@ export default function QualityCraft() {
     >
       <div className="container">
         {/* Section Header */}
-        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "4rem", opacity: 0 }}>
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "clamp(1.75rem, 3.5vw, 2.5rem)", opacity: 0 }}>
           <span className="brand-badge">MATERIAL SCIENCE & INTEGRITY</span>
           <h2
             style={{

@@ -86,6 +86,9 @@ export default function BrandManifesto() {
       className="section-spacing"
       style={{
         position: "relative",
+        zIndex: 15,
+        marginTop: "clamp(-4.5rem, -12vh, -2.5rem)",
+        paddingTop: "clamp(2rem, 4.5vw, 3rem)",
         background: "var(--color-navy-surface)",
         borderTop: "1px solid var(--glass-border-dark)",
         borderBottom: "1px solid var(--glass-border-dark)",
@@ -94,7 +97,7 @@ export default function BrandManifesto() {
     >
       <div className="container">
         {/* Section Heading Tag */}
-        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "3rem", opacity: 0 }}>
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "clamp(1.5rem, 3vw, 2.25rem)", opacity: 0 }}>
           <span className="brand-badge">THE PHILOSOPHY OF RESPECT</span>
           <h2
             style={{

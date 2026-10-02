@@ -1,14 +1,14 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   variant?: "light" | "dark";
   size?: "sm" | "md" | "lg";
+  showTagline?: boolean;
 }
 
-export default function Logo({ variant = "light", size = "md" }: LogoProps) {
-  const iconSize = size === "sm" ? 28 : size === "lg" ? 44 : 36;
-  const textSize = size === "sm" ? "1.1rem" : size === "lg" ? "1.8rem" : "1.35rem";
-  const subtextSize = size === "sm" ? "0.55rem" : size === "lg" ? "0.75rem" : "0.625rem";
+export default function Logo({ variant = "light", size = "md", showTagline = true }: LogoProps) {
+  const iconHeight = size === "sm" ? 26 : size === "lg" ? 42 : 34;
 
   return (
     <Link
@@ -16,84 +16,82 @@ export default function Logo({ variant = "light", size = "md" }: LogoProps) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "clamp(0.5rem, 2vw, 0.85rem)",
+        gap: "clamp(0.5rem, 1.8vw, 0.85rem)",
         textDecoration: "none",
         minWidth: 0,
+        flexShrink: 1,
       }}
-      aria-label="AVEEHRA Homepage"
+      aria-label="AVEEHRA - Pioneering India's Circular Uniform Ecosystem"
     >
-      {/* Veera Shield + Heera Diamond Crest Icon */}
-      <svg
-        width={iconSize}
-        height={iconSize}
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ flexShrink: 0, width: "clamp(28px, 6vw, 36px)", height: "clamp(28px, 6vw, 36px)" }}
+      {/* Official Aveehra Monogram Crest Icon */}
+      <div
+        style={{
+          position: "relative",
+          flexShrink: 0,
+          height: `clamp(26px, 5.5vw, ${iconHeight}px)`,
+          width: `calc(clamp(26px, 5.5vw, ${iconHeight}px) * 1.69)`,
+          display: "flex",
+          alignItems: "center",
+        }}
       >
-        <defs>
-          <linearGradient id="aveehraGold" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFF2B2" />
-            <stop offset="50%" stopColor="#C59B27" />
-            <stop offset="100%" stopColor="#8C6710" />
-          </linearGradient>
-          <linearGradient id="shieldFill" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#1C2E46" />
-            <stop offset="100%" stopColor="#0B1420" />
-          </linearGradient>
-        </defs>
-
-        {/* Outer Shield (Veera) */}
-        <path
-          d="M24 4L40 10V22C40 33 24 44 24 44C24 44 8 33 8 22V10L24 4Z"
-          fill="url(#shieldFill)"
-          stroke="url(#aveehraGold)"
-          strokeWidth="1.75"
+        <Image
+          src="/images/aveehra-icon.png"
+          alt="Aveehra Crest"
+          width={400}
+          height={236}
+          priority
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
         />
+      </div>
 
-        {/* Diamond Facet (Heera) */}
-        <path
-          d="M24 13L32 22L24 33L16 22L24 13Z"
-          fill="none"
-          stroke="url(#aveehraGold)"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <line x1="16" y1="22" x2="32" y2="22" stroke="url(#aveehraGold)" strokeWidth="1" opacity="0.8" />
-        <line x1="24" y1="13" x2="24" y2="33" stroke="url(#aveehraGold)" strokeWidth="1" opacity="0.8" />
-
-        {/* Central Core Point */}
-        <circle cx="24" cy="22" r="2" fill="#FFE999" />
-      </svg>
-
-      {/* Brand Typographic Wordmark */}
-      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1, minWidth: 0 }}>
+      {/* Brand Typographic Wordmark & Tagline */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          lineHeight: 1,
+          minWidth: 0,
+          justifyContent: "center",
+        }}
+      >
         <span
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(1.05rem, 3.5vw, 1.35rem)",
+            fontSize: "clamp(1.05rem, 3.2vw, 1.35rem)",
             fontWeight: 700,
-            letterSpacing: "0.2em",
-            color: variant === "dark" ? "var(--text-dark-primary)" : "var(--text-light-primary)",
+            letterSpacing: "0.22em",
+            color: variant === "dark" ? "var(--text-dark-primary)" : "#FFFFFF",
             textTransform: "uppercase",
             whiteSpace: "nowrap",
+            lineHeight: 1.1,
           }}
         >
           AVEEHRA
         </span>
-        <span
-          style={{
-            fontSize: "clamp(0.48rem, 1.6vw, 0.625rem)",
-            fontWeight: 600,
-            letterSpacing: "clamp(0.12em, 1.2vw, 0.28em)",
-            color: "var(--color-gold-bright)",
-            textTransform: "uppercase",
-            marginTop: "3px",
-            whiteSpace: "nowrap",
-          }}
-        >
-          MYSURU • CIRCULAR UNIFORMS
-        </span>
+
+        {showTagline && (
+          <span
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(0.42rem, 1.3vw, 0.58rem)",
+              fontStyle: "italic",
+              fontWeight: 500,
+              letterSpacing: "0.04em",
+              color: "var(--color-gold-bright)",
+              marginTop: "2px",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              lineHeight: 1.2,
+            }}
+          >
+            Pioneering India&apos;s Circular Uniform Ecosystem
+          </span>
+        )}
       </div>
     </Link>
   );

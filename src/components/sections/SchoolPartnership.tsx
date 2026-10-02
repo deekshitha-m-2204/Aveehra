@@ -101,7 +101,7 @@ export default function SchoolPartnership() {
     >
       <div className="container">
         {/* Section Header */}
-        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "4rem", opacity: 0 }}>
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "clamp(1.75rem, 3.5vw, 2.5rem)", opacity: 0 }}>
           <span className="brand-badge">FOR EDUCATIONAL INSTITUTIONS</span>
           <h2
             style={{

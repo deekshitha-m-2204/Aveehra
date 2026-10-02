@@ -12,14 +12,22 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     }
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 0.65, // Reduced by 40% (from 1.1s) for snappy, lightweight scrolling
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.15,
+      touchMultiplier: 1.2,
     });
+
+    (window as any).__lenis = lenis;
+
+    const handleStop = () => lenis.stop();
+    const handleStart = () => lenis.start();
+
+    window.addEventListener("lenis:stop", handleStop);
+    window.addEventListener("lenis:start", handleStart);
 
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
@@ -28,6 +36,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      window.removeEventListener("lenis:stop", handleStop);
+      window.removeEventListener("lenis:start", handleStart);
+      delete (window as any).__lenis;
       gsap.ticker.remove((time) => {
         lenis.raf(time * 1000);
       });

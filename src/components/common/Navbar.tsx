@@ -327,12 +327,13 @@ export default function Navbar() {
               style={{
                 textAlign: "center",
                 fontSize: "0.7rem",
-                color: "var(--text-light-muted)",
+                color: "var(--color-gold-bright)",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
+                fontWeight: 600,
               }}
             >
-              BORN IN MYSURU • RESPECT → EXTEND → REUSE → RECYCLE
+              Pioneering India&apos;s Circular Uniform Ecosystem
             </div>
           </div>
         </div>

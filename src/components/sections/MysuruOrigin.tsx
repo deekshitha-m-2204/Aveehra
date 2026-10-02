@@ -85,7 +85,7 @@ export default function MysuruOrigin() {
     >
       <div className="container">
         {/* Section Tag */}
-        <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(1.75rem, 3.5vw, 2.5rem)" }}>
           <span className="brand-badge">THE BIRTHPLACE OF A MOVEMENT</span>
           <h2
             style={{

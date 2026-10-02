@@ -2,7 +2,8 @@ import { ImpactMetric, LifecyclePhase, Pillar, SchoolPartner } from "@/types";
 
 export const BRAND_CONFIG = {
   name: "AVEEHRA",
-  tagline: "Every Uniform Has a Story. Every Story Deserves a Second Chapter.",
+  tagline: "Pioneering India's Circular Uniform Ecosystem",
+  manifesto: "Every Uniform Has a Story. Every Story Deserves a Second Chapter.",
   positioning: "Pioneering India's Circular Uniform Ecosystem",
   origin: "Born in Mysuru, Karnataka — Expanding Across India",
   philosophy: "Respect → Extend → Reuse → Recycle",
