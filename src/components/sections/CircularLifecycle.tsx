@@ -173,6 +173,9 @@ export default function CircularLifecycle() {
     if (modalPhaseIndex !== null) {
       // 1. Tell Lenis to freeze immediately
       window.dispatchEvent(new CustomEvent("lenis:stop"));
+      if (typeof window !== "undefined" && (window as any).__lenis) {
+        (window as any).__lenis.stop();
+      }
 
       // 2. Lock body scroll without layout shift
       const scrollY = window.scrollY;
@@ -211,6 +214,9 @@ export default function CircularLifecycle() {
 
         // Resume Lenis
         window.dispatchEvent(new CustomEvent("lenis:start"));
+        if (typeof window !== "undefined" && (window as any).__lenis) {
+          (window as any).__lenis.start();
+        }
         window.removeEventListener("keydown", handleKeyDown);
       };
     }
