@@ -1,0 +1,87 @@
+:root {
+  /* Brand Color Palette */
+  --color-primary-navy: #0A121D;
+  --color-navy-deep: #060B12;
+  --color-navy-surface: #101B2B;
+  --color-navy-card: #152236;
+  --color-navy-subtle: #1C2C44;
+
+  --color-gold-accent: #C59B27;
+  --color-gold-bright: #E2B538;
+  --color-gold-glow: rgba(197, 155, 39, 0.28);
+  --color-gold-subtle: rgba(197, 155, 39, 0.12);
+  --color-gold-border: rgba(197, 155, 39, 0.35);
+
+  --color-canvas-ivory: #F8F6F0;
+  --color-canvas-cream: #EFECE3;
+  --color-canvas-card: #FFFFFF;
+
+  --color-sage-emerald: #1B382B;
+  --color-sage-light: #2A5240;
+  --color-sage-glow: rgba(27, 56, 43, 0.2);
+
+  /* Typography Colors */
+  --text-dark-primary: #0D141E;
+  --text-dark-secondary: #4A5568;
+  --text-dark-muted: #718096;
+
+  --text-light-primary: #FAF9F5;
+  --text-light-secondary: #CBD5E0;
+  --text-light-muted: #8896AB;
+
+  /* Typography Fonts */
+  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.825rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.45rem);
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.85rem);
+  --text-3xl: clamp(1.85rem, 1.6rem + 1.25vw, 2.35rem);
+  --text-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3.15rem);
+  --text-5xl: clamp(2.85rem, 2.3rem + 2.75vw, 4.25rem);
+  --text-display: clamp(3.2rem, 2.6rem + 3.8vw, 5.75rem);
+
+  /* Spacing Scale */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8.5rem;
+
+  /* Glassmorphism & Elevation */
+  --glass-bg-dark: rgba(10, 18, 29, 0.78);
+  --glass-border-dark: rgba(255, 255, 255, 0.09);
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-border-light: rgba(14, 26, 43, 0.08);
+  --glass-blur: blur(16px);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.18);
+  --shadow-gold: 0 10px 30px rgba(197, 155, 39, 0.22);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-luxurious: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Border Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  /* Container */
+  --container-max: 1320px;
+  --container-pad: clamp(1rem, 4vw, 3rem);
+}
