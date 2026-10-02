@@ -134,9 +134,9 @@ export default function QualityCraft() {
           ref={gridRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1.5rem",
-            marginBottom: "3.5rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))",
+            gap: "clamp(1rem, 2.5vw, 1.5rem)",
+            marginBottom: "clamp(2rem, 5vw, 3.5rem)",
           }}
         >
           {craftFeatures.map((feature, idx) => (
@@ -144,7 +144,7 @@ export default function QualityCraft() {
               key={idx}
               className="glass-card"
               style={{
-                padding: "2rem",
+                padding: "clamp(1.25rem, 3vw, 2rem)",
                 background: "rgba(16, 27, 43, 0.7)",
                 opacity: 0,
               }}

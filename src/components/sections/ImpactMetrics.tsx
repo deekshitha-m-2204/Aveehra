@@ -63,9 +63,10 @@ export default function ImpactMetrics() {
       }
     );
 
-    // 2. The Two Pillars slide in from sides
+    // 2. The Two Pillars slide in
     const leftPillar = splitCardsRef.current.children[0];
     const rightPillar = splitCardsRef.current.children[1];
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -74,8 +75,8 @@ export default function ImpactMetrics() {
       }
     });
 
-    tl.fromTo(leftPillar, { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0)
-      .fromTo(rightPillar, { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0);
+    tl.fromTo(leftPillar, { x: isMobile ? 0 : -40, y: isMobile ? 30 : 0, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0)
+      .fromTo(rightPillar, { x: isMobile ? 0 : 40, y: isMobile ? 30 : 0, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 0);
 
   }, { scope: container });
 
@@ -93,7 +94,7 @@ export default function ImpactMetrics() {
     >
       <div className="container">
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 4rem)" }}>
           <span className="brand-badge">MEASURABLE IMPACT</span>
           <h2
             style={{
@@ -101,6 +102,7 @@ export default function ImpactMetrics() {
               color: "#FFFFFF",
               marginTop: "1rem",
               marginBottom: "1rem",
+              textWrap: "balance",
             }}
           >
             The Dual Power of Environmental & Social Metrics
@@ -111,6 +113,7 @@ export default function ImpactMetrics() {
               margin: "0 auto",
               fontSize: "var(--text-lg)",
               color: "var(--text-light-secondary)",
+              textWrap: "pretty",
             }}
           >
             True circularity produces compound positive change—slashing textile waste while funding student
@@ -123,9 +126,9 @@ export default function ImpactMetrics() {
           ref={cardsRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "1.5rem",
-            marginBottom: "4rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
+            gap: "clamp(1rem, 2vw, 1.5rem)",
+            marginBottom: "clamp(2.5rem, 5vw, 4rem)",
           }}
         >
           {IMPACT_METRICS.map((metric, idx) => {
@@ -136,7 +139,7 @@ export default function ImpactMetrics() {
                 className="glass-card"
                 style={{
                   textAlign: "center",
-                  padding: "2.5rem 1.5rem",
+                  padding: "clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem)",
                   background: "rgba(10, 18, 29, 0.7)",
                   border: "1px solid var(--color-gold-border)",
                   opacity: 0 // hidden initially for GSAP
@@ -195,7 +198,7 @@ export default function ImpactMetrics() {
           <div
             className="glass-card"
             style={{
-              padding: "2.5rem",
+              padding: "clamp(1.25rem, 3vw, 2.5rem)",
               background: "rgba(16, 27, 43, 0.8)",
               border: "1px solid var(--glass-border-dark)",
               opacity: 0
@@ -225,7 +228,7 @@ export default function ImpactMetrics() {
           <div
             className="glass-card"
             style={{
-              padding: "2.5rem",
+              padding: "clamp(1.25rem, 3vw, 2.5rem)",
               background: "rgba(16, 27, 43, 0.8)",
               border: "1px solid var(--glass-border-dark)",
               opacity: 0

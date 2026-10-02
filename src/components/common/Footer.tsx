@@ -7,8 +7,8 @@ export default function Footer() {
       style={{
         background: "var(--color-navy-deep)",
         borderTop: "1px solid var(--glass-border-dark)",
-        paddingTop: "5rem",
-        paddingBottom: "3rem",
+        paddingTop: "clamp(3rem, 6vh, 5rem)",
+        paddingBottom: "clamp(2rem, 4vh, 3rem)",
         position: "relative",
       }}
     >
@@ -17,9 +17,9 @@ export default function Footer() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "3rem",
-            marginBottom: "4rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
+            gap: "clamp(1.75rem, 4vw, 3rem)",
+            marginBottom: "clamp(2rem, 5vw, 4rem)",
           }}
         >
           {/* Brand & Philosophy Column */}

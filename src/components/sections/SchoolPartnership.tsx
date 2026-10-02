@@ -32,37 +32,36 @@ export default function SchoolPartnership() {
       }
     );
 
-    // 2. 3D Stacking Cards
+    // 2. Stacking Cards
     if (gridRef.current) {
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
       const cards = gsap.utils.toArray(gridRef.current.children) as HTMLElement[];
       
       cards.forEach((card, index) => {
-        // Alternate directions based on index (even from left, odd from right)
-        const xOffset = index % 2 === 0 ? -100 : 100;
-        const rotateYOffset = index % 2 === 0 ? -15 : 15;
+        // On desktop alternate directions, on mobile slide up smoothly without horizontal overflow
+        const xOffset = isMobile ? 0 : (index % 2 === 0 ? -80 : 80);
+        const rotateYOffset = isMobile ? 0 : (index % 2 === 0 ? -10 : 10);
 
         gsap.fromTo(
           card,
           { 
             x: xOffset, 
-            y: 50, 
+            y: 40, 
             opacity: 0, 
             rotationY: rotateYOffset,
-            rotationZ: -2,
-            scale: 0.9 
+            scale: 0.95 
           },
           {
             x: 0,
             y: 0,
             opacity: 1,
             rotationY: 0,
-            rotationZ: 0,
             scale: 1,
-            duration: 1,
+            duration: 0.8,
             ease: "power3.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 85%", // Trigger each card individually as it comes into view
+              start: "top 88%",
             },
           }
         );
@@ -132,9 +131,9 @@ export default function SchoolPartnership() {
           ref={gridRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "1.75rem",
-            marginBottom: "3.5rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            gap: "clamp(1rem, 2.5vw, 1.75rem)",
+            marginBottom: "clamp(2rem, 5vw, 3.5rem)",
           }}
         >
           {INSTITUTIONAL_PILLARS.map((pillar) => (
@@ -145,9 +144,8 @@ export default function SchoolPartnership() {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                padding: "2rem",
+                padding: "clamp(1.25rem, 3vw, 2rem)",
                 background: "rgba(16, 27, 43, 0.75)",
-                transformStyle: "preserve-3d"
               }}
             >
               <div>
@@ -183,7 +181,7 @@ export default function SchoolPartnership() {
                   </div>
                 </div>
 
-                <h3 style={{ fontSize: "var(--text-xl)", color: "#FFFFFF", marginBottom: "0.5rem" }}>
+                <h3 style={{ fontSize: "var(--text-xl)", color: "#FFFFFF", marginBottom: "0.5rem", textWrap: "balance" }}>
                   {pillar.title}
                 </h3>
                 <div
@@ -227,7 +225,7 @@ export default function SchoolPartnership() {
           ref={ctaRef}
           className="glass-card"
           style={{
-            padding: "clamp(2rem, 3.5vw, 3rem)",
+            padding: "clamp(1.5rem, 3.5vw, 3rem)",
             background: "linear-gradient(135deg, rgba(28, 44, 68, 0.85) 0%, rgba(10, 18, 29, 0.95) 100%)",
             border: "1px solid var(--color-gold-border)",
             display: "flex",
@@ -235,8 +233,8 @@ export default function SchoolPartnership() {
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: "2rem",
-            opacity: 0
+            gap: "1.5rem",
+            opacity: 0,
           }}
         >
           <div style={{ maxWidth: "680px" }}>
@@ -257,6 +255,7 @@ export default function SchoolPartnership() {
                 color: "#FFFFFF",
                 marginTop: "0.5rem",
                 marginBottom: "0.75rem",
+                textWrap: "balance",
               }}
             >
               Experience the Aveehra Fabric & Institutional Partnership Blueprint
@@ -267,8 +266,8 @@ export default function SchoolPartnership() {
             </p>
           </div>
 
-          <div>
-            <a href="#partner" className="btn btn-primary" style={{ padding: "0.95rem 2rem" }}>
+          <div className="banner-cta-btn-wrap">
+            <a href="#partner" className="btn btn-primary" style={{ padding: "0.85rem 1.75rem" }}>
               <span>Request Institutional Kit</span>
               <ArrowRight size={17} />
             </a>

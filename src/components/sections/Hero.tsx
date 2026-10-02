@@ -74,8 +74,8 @@ export default function Hero() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: "7.5rem",
-        paddingBottom: "5rem",
+        paddingTop: "clamp(4.75rem, 8vh, 7.25rem)",
+        paddingBottom: "clamp(2.75rem, 5vh, 4.5rem)",
         overflow: "hidden",
       }}
     >
@@ -119,8 +119,8 @@ export default function Hero() {
             top: "20%",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "800px",
-            height: "400px",
+            width: "min(800px, 90vw)",
+            height: "min(400px, 50vh)",
             background: "radial-gradient(ellipse, rgba(197, 155, 39, 0.18) 0%, transparent 70%)",
             filter: "blur(50px)",
             pointerEvents: "none",
@@ -147,12 +147,13 @@ export default function Hero() {
             color: "#FFFFFF",
             maxWidth: "1080px",
             margin: "0 auto 1.5rem auto",
-            lineHeight: 1.08,
+            lineHeight: 1.1,
             letterSpacing: "-0.02em",
             opacity: 0,
+            textWrap: "balance",
           }}
         >
-          A Uniform is Never <br />
+          A Uniform is Never <br className="desktop-break" />
           <span className="text-gold-gradient" style={{ fontStyle: "italic", fontWeight: 400 }}>
             Merely a Piece of Cloth.
           </span>
@@ -165,10 +166,11 @@ export default function Hero() {
             fontSize: "var(--text-xl)",
             color: "var(--text-light-secondary)",
             maxWidth: "780px",
-            margin: "0 auto 2.5rem auto",
+            margin: "0 auto clamp(1.75rem, 4vw, 2.5rem) auto",
             fontWeight: 300,
-            lineHeight: 1.55,
+            lineHeight: 1.6,
             opacity: 0,
+            textWrap: "pretty",
           }}
         >
           It witnesses childhood memories, discipline, and the quiet sacrifices of parents.{" "}
@@ -181,21 +183,31 @@ export default function Hero() {
         {/* Action Buttons */}
         <div
           ref={buttonsRef}
+          className="hero-actions"
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "1.25rem",
-            flexWrap: "wrap",
-            marginBottom: "4rem",
+            marginBottom: "clamp(2rem, 5vw, 4rem)",
             opacity: 0,
           }}
         >
-          <a href="#partner" className="btn btn-primary" style={{ padding: "1rem 2.25rem", fontSize: "1rem" }}>
+          <a
+            href="#partner"
+            className="btn btn-primary"
+            style={{
+              padding: "clamp(0.85rem, 2vw, 1rem) clamp(1.35rem, 3vw, 2.25rem)",
+              fontSize: "clamp(0.875rem, 2vw, 1rem)",
+            }}
+          >
             <span>Partner as an Institution</span>
             <ArrowRight size={18} />
           </a>
-          <a href="#ecosystem" className="btn btn-secondary" style={{ padding: "1rem 2.25rem", fontSize: "1rem" }}>
+          <a
+            href="#ecosystem"
+            className="btn btn-secondary"
+            style={{
+              padding: "clamp(0.85rem, 2vw, 1rem) clamp(1.35rem, 3vw, 2.25rem)",
+              fontSize: "clamp(0.875rem, 2vw, 1rem)",
+            }}
+          >
             <RefreshCw size={17} />
             <span>Explore the Circular Journey</span>
           </a>
@@ -206,16 +218,17 @@ export default function Hero() {
           ref={cardsRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1.25rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+            gap: "clamp(0.85rem, 2vw, 1.25rem)",
             maxWidth: "1100px",
             margin: "0 auto",
+            width: "100%",
           }}
         >
           <div
             className="glass-card"
             style={{
-              padding: "1.5rem",
+              padding: "clamp(1.15rem, 2.5vw, 1.5rem)",
               textAlign: "left",
               background: "rgba(16, 27, 43, 0.65)",
               border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -236,7 +249,7 @@ export default function Hero() {
           <div
             className="glass-card"
             style={{
-              padding: "1.5rem",
+              padding: "clamp(1.15rem, 2.5vw, 1.5rem)",
               textAlign: "left",
               background: "rgba(16, 27, 43, 0.65)",
               border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -257,7 +270,7 @@ export default function Hero() {
           <div
             className="glass-card"
             style={{
-              padding: "1.5rem",
+              padding: "clamp(1.15rem, 2.5vw, 1.5rem)",
               textAlign: "left",
               background: "rgba(16, 27, 43, 0.65)",
               border: "1px solid rgba(255, 255, 255, 0.08)",

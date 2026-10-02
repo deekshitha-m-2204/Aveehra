@@ -32,8 +32,12 @@ export default function CircularLifecycle() {
       }
     );
 
-    // 2. Horizontal Scroll Pinning & Image Parallax
-    if (trackRef.current) {
+    // 2. Responsive Animation using GSAP matchMedia
+    const mm = gsap.matchMedia();
+
+    // Desktop Viewport: Horizontal Scroll Pinning & Image Parallax
+    mm.add("(min-width: 961px)", () => {
+      if (!trackRef.current) return;
       const sections = gsap.utils.toArray(trackRef.current.children);
       const images = gsap.utils.toArray(".parallax-image");
 
@@ -44,29 +48,51 @@ export default function CircularLifecycle() {
           scrub: 1,
           snap: 1 / (sections.length - 1),
           start: "center center",
-          end: "+=3000", // User scrolls 3000px to traverse the phases
+          end: "+=3000",
         },
       });
 
-      // Slide the entire track to the left
-      tl.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-      }, 0);
-
-      // Create a counter-panning parallax effect for the images inside the cards
-      tl.fromTo(
-        images,
+      // Slide entire track horizontally
+      tl.to(
+        sections,
         {
-          xPercent: -15,
-        },
-        {
-          xPercent: 15,
+          xPercent: -100 * (sections.length - 1),
           ease: "none",
         },
         0
       );
-    }
+
+      // Counter-panning parallax effect
+      tl.fromTo(
+        images,
+        { xPercent: -15 },
+        { xPercent: 15, ease: "none" },
+        0
+      );
+    });
+
+    // Mobile & Tablet Viewport: Natural Vertical Staggered Reveal
+    mm.add("(max-width: 960px)", () => {
+      const cards = gsap.utils.toArray(".lifecycle-card-inner");
+      cards.forEach((card: any) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+            },
+          }
+        );
+      });
+    });
+
+    return () => mm.revert();
   }, { scope: container });
 
   return (
@@ -77,8 +103,8 @@ export default function CircularLifecycle() {
         position: "relative",
         background: "var(--color-navy-deep)",
         overflow: "hidden",
-        paddingTop: "6rem",
-        paddingBottom: "6rem",
+        paddingTop: "clamp(3.5rem, 8vh, 6rem)",
+        paddingBottom: "clamp(3.5rem, 8vh, 6rem)",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
@@ -97,7 +123,7 @@ export default function CircularLifecycle() {
 
       <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Section Header */}
-        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "3rem", opacity: 0 }}>
+        <div ref={headerRef} style={{ textAlign: "center", marginBottom: "clamp(2rem, 5vw, 3rem)", opacity: 0 }}>
           <span className="brand-badge">THE CIRCULAR ECOSYSTEM</span>
           <h2
             style={{
@@ -105,6 +131,7 @@ export default function CircularLifecycle() {
               color: "#FFFFFF",
               marginTop: "1rem",
               marginBottom: "1rem",
+              textWrap: "balance",
             }}
           >
             Respect → Extend → Reuse → Recycle
@@ -115,41 +142,33 @@ export default function CircularLifecycle() {
               margin: "0 auto",
               fontSize: "var(--text-lg)",
               color: "var(--text-light-secondary)",
+              textWrap: "pretty",
             }}
           >
-            Scroll to follow the journey. If a uniform can continue serving another student with pride and
+            Follow the journey. If a uniform can continue serving another student with pride and
             dignity, we extend its life.
           </p>
         </div>
       </div>
 
-      {/* Horizontal Scroll Track Wrapper */}
+      {/* Lifecycle Track: Horizontal slide on desktop, stacked on mobile */}
       <div style={{ overflow: "hidden", width: "100%" }}>
         <div
           ref={trackRef}
-          style={{
-            display: "flex",
-            width: `${LIFECYCLE_PHASES.length * 100}vw`,
-          }}
+          className="lifecycle-track"
         >
           {LIFECYCLE_PHASES.map((phase) => (
             <div
               key={phase.step}
-              style={{
-                width: "100vw",
-                padding: "0 5vw",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              className="lifecycle-phase-wrapper"
             >
               {/* Phase Card */}
               <div
-                className="glass-card"
+                className="glass-card lifecycle-card-inner"
                 style={{
                   width: "100%",
                   maxWidth: "1100px",
-                  padding: "clamp(2rem, 4vw, 3.5rem)",
+                  padding: "clamp(1.5rem, 3.5vw, 3.5rem)",
                   background: "linear-gradient(135deg, rgba(21, 34, 54, 0.9) 0%, rgba(10, 18, 29, 0.95) 100%)",
                   border: "1px solid var(--color-gold-border)",
                 }}
@@ -168,6 +187,7 @@ export default function CircularLifecycle() {
                         letterSpacing: "0.15em",
                         textTransform: "uppercase",
                         marginBottom: "0.75rem",
+                        flexWrap: "wrap",
                       }}
                     >
                       <Sparkles size={14} />
@@ -181,6 +201,7 @@ export default function CircularLifecycle() {
                         fontSize: "var(--text-3xl)",
                         color: "#FFFFFF",
                         marginBottom: "0.5rem",
+                        textWrap: "balance",
                       }}
                     >
                       {phase.title}
@@ -190,25 +211,25 @@ export default function CircularLifecycle() {
                         fontSize: "var(--text-lg)",
                         color: "var(--color-gold-bright)",
                         fontFamily: "var(--font-serif)",
-                        marginBottom: "1.5rem",
+                        marginBottom: "1.25rem",
                       }}
                     >
                       {phase.subtitle}
                     </div>
 
-                    <p style={{ fontSize: "var(--text-base)", lineHeight: 1.7, marginBottom: "2rem" }}>
+                    <p style={{ fontSize: "var(--text-base)", lineHeight: 1.65, marginBottom: "1.5rem" }}>
                       {phase.description}
                     </p>
 
                     {/* Bullet Details */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", marginBottom: "2rem" }}>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.75rem" }}>
                       {phase.details.map((detail, dIdx) => (
                         <div key={dIdx} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                           <CheckCircle2
                             size={18}
-                            style={{ color: "var(--color-gold-bright)", flexShrink: 0, marginTop: "3px" }}
+                            style={{ color: "var(--color-gold-bright)", flexShrink: 0, marginTop: "2px" }}
                           />
-                          <span style={{ fontSize: "var(--text-sm)", color: "var(--text-light-secondary)" }}>
+                          <span style={{ fontSize: "var(--text-sm)", color: "var(--text-light-secondary)", lineHeight: 1.5 }}>
                             {detail}
                           </span>
                         </div>
@@ -220,17 +241,19 @@ export default function CircularLifecycle() {
                       style={{
                         display: "inline-flex",
                         alignItems: "center",
-                        gap: "1.25rem",
-                        padding: "1rem 1.5rem",
+                        gap: "clamp(0.75rem, 2vw, 1.25rem)",
+                        padding: "clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.5rem)",
                         background: "rgba(197, 155, 39, 0.08)",
                         borderRadius: "var(--radius-md)",
                         border: "1px solid var(--color-gold-border)",
+                        maxWidth: "100%",
+                        flexWrap: "wrap",
                       }}
                     >
-                      <div style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", color: "var(--color-gold-bright)", fontWeight: 700 }}>
+                      <div style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(1.5rem, 4vw, 2rem)", color: "var(--color-gold-bright)", fontWeight: 700 }}>
                         {phase.metric}
                       </div>
-                      <div style={{ fontSize: "var(--text-xs)", color: "var(--text-light-primary)", fontWeight: 500 }}>
+                      <div style={{ fontSize: "var(--text-xs)", color: "var(--text-light-primary)", fontWeight: 500, lineHeight: 1.4 }}>
                         {phase.badge} Standard for Partner Institutions
                       </div>
                     </div>
@@ -241,20 +264,19 @@ export default function CircularLifecycle() {
                     <div
                       style={{
                         position: "relative",
-                        height: "480px",
+                        height: "clamp(240px, 40vw, 480px)",
                         borderRadius: "var(--radius-lg)",
-                        overflow: "hidden", // Crucial for parallax masking
+                        overflow: "hidden",
                         border: "1px solid var(--glass-border-dark)",
                       }}
                     >
-                      {/* The image is rendered larger than its container (scale: 1.3) so it has room to translate for the parallax effect */}
                       <div
                         className="parallax-image"
                         style={{
                           position: "absolute",
                           top: 0,
-                          left: "-15%", // Provide negative offset room
-                          width: "130%", // Wider than container
+                          left: "-15%",
+                          width: "130%",
                           height: "100%",
                         }}
                       >
@@ -275,28 +297,28 @@ export default function CircularLifecycle() {
                         }}
                       />
                       
-                      {/* Special conditional UI for Phase 3 (Sanitization) to keep the original style */}
+                      {/* Special conditional UI for Phase 3 (Sanitization) */}
                       {phase.step === "03" && (
                         <div
                           style={{
                             position: "absolute",
-                            bottom: "1.5rem",
-                            left: "1.5rem",
-                            right: "1.5rem",
-                            background: "rgba(10, 18, 29, 0.85)",
+                            bottom: "clamp(0.85rem, 2vw, 1.5rem)",
+                            left: "clamp(0.85rem, 2vw, 1.5rem)",
+                            right: "clamp(0.85rem, 2vw, 1.5rem)",
+                            background: "rgba(10, 18, 29, 0.88)",
                             backdropFilter: "blur(12px)",
-                            padding: "1.25rem",
+                            padding: "clamp(0.85rem, 2vw, 1.25rem)",
                             borderRadius: "var(--radius-md)",
                             border: "1px solid var(--glass-border-dark)",
                           }}
                         >
                           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
-                            <ShieldCheck size={18} style={{ color: "var(--color-gold-bright)" }} />
+                            <ShieldCheck size={18} style={{ color: "var(--color-gold-bright)", flexShrink: 0 }} />
                             <span style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "#FFFFFF", letterSpacing: "0.08em" }}>
                               AVEEHRA CERTIFIED RESTORATION PROTOCOL
                             </span>
                           </div>
-                          <p style={{ fontSize: "var(--text-xs)", color: "var(--text-light-muted)", margin: 0 }}>
+                          <p style={{ fontSize: "var(--text-xs)", color: "var(--text-light-muted)", margin: 0, lineHeight: 1.4 }}>
                             Hospital-grade steam sanitization • Structural seam reinforcement • Oeko-Tex safety seal
                           </p>
                         </div>

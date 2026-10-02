@@ -67,14 +67,14 @@ export default function InstitutionalLeadForm() {
           <div
             className="glass-card"
             style={{
-              padding: "clamp(2rem, 3.5vw, 3rem)",
+              padding: "clamp(1.25rem, 3.5vw, 3rem)",
               background: "rgba(10, 18, 29, 0.85)",
               border: "1px solid var(--color-gold-border)",
               boxShadow: "var(--shadow-gold)",
             }}
           >
             {submitted ? (
-              <div style={{ textAlign: "center", padding: "3rem 1rem" }}>
+              <div style={{ textAlign: "center", padding: "clamp(2rem, 4vw, 3rem) 1rem" }}>
                 <div
                   style={{
                     width: "64px",
@@ -89,10 +89,10 @@ export default function InstitutionalLeadForm() {
                 >
                   <CheckCircle size={36} style={{ color: "var(--color-gold-bright)" }} />
                 </div>
-                <h3 style={{ fontSize: "var(--text-2xl)", color: "#FFFFFF", marginBottom: "0.75rem" }}>
+                <h3 style={{ fontSize: "var(--text-2xl)", color: "#FFFFFF", marginBottom: "0.75rem", textWrap: "balance" }}>
                   Thank You, {formData.contactPerson || "Partner"}
                 </h3>
-                <p style={{ fontSize: "var(--text-base)", color: "var(--text-light-secondary)", marginBottom: "2rem" }}>
+                <p style={{ fontSize: "var(--text-base)", color: "var(--text-light-secondary)", marginBottom: "2rem", textWrap: "pretty" }}>
                   Your request for <strong>{formData.schoolName || "your institution"}</strong> has been received. Our
                   Mysuru founding liaison will reach out to schedule your sample kit delivery and consultation.
                 </p>
@@ -106,15 +106,15 @@ export default function InstitutionalLeadForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                  <Package size={20} style={{ color: "var(--color-gold-bright)" }} />
-                  <h3 style={{ fontSize: "var(--text-xl)", color: "#FFFFFF" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                  <Package size={20} style={{ color: "var(--color-gold-bright)", flexShrink: 0 }} />
+                  <h3 style={{ fontSize: "var(--text-xl)", color: "#FFFFFF", textWrap: "balance" }}>
                     Institutional Consultation & Sample Kit
                   </h3>
                 </div>
 
-                {/* Grid Inputs */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                {/* Grid Inputs 1 */}
+                <div className="responsive-2col">
                   <div>
                     <label style={{ display: "block", fontSize: "var(--text-xs)", color: "var(--text-light-muted)", marginBottom: "0.35rem" }}>
                       Institution / School Name *
@@ -132,7 +132,7 @@ export default function InstitutionalLeadForm() {
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     />
                   </div>
@@ -153,13 +153,14 @@ export default function InstitutionalLeadForm() {
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     />
                   </div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                {/* Grid Inputs 2 */}
+                <div className="responsive-2col">
                   <div>
                     <label style={{ display: "block", fontSize: "var(--text-xs)", color: "var(--text-light-muted)", marginBottom: "0.35rem" }}>
                       Official Email Address *
@@ -177,7 +178,7 @@ export default function InstitutionalLeadForm() {
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     />
                   </div>
@@ -198,13 +199,14 @@ export default function InstitutionalLeadForm() {
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     />
                   </div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                {/* Grid Inputs 3 */}
+                <div className="responsive-2col">
                   <div>
                     <label style={{ display: "block", fontSize: "var(--text-xs)", color: "var(--text-light-muted)", marginBottom: "0.35rem" }}>
                       City / Location
@@ -221,7 +223,7 @@ export default function InstitutionalLeadForm() {
                         background: "rgba(255, 255, 255, 0.05)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     />
                   </div>
@@ -239,7 +241,7 @@ export default function InstitutionalLeadForm() {
                         background: "var(--color-navy-surface)",
                         border: "1px solid var(--glass-border-dark)",
                         color: "#FFFFFF",
-                        fontSize: "var(--text-sm)",
+                        minHeight: "44px",
                       }}
                     >
                       <option value="Under 500 students">Under 500 students</option>
@@ -266,19 +268,38 @@ export default function InstitutionalLeadForm() {
                       background: "rgba(255, 255, 255, 0.05)",
                       border: "1px solid var(--glass-border-dark)",
                       color: "#FFFFFF",
-                      fontSize: "var(--text-sm)",
                     }}
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary" style={{ marginTop: "0.5rem" }}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{
+                    marginTop: "0.5rem",
+                    width: "100%",
+                    padding: "0.95rem 1.5rem",
+                    whiteSpace: "normal",
+                    minHeight: "48px",
+                  }}
+                >
                   <span>Request Institutional Kit & Consultation</span>
-                  <Send size={16} />
+                  <Send size={16} style={{ flexShrink: 0 }} />
                 </button>
 
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", justifyContent: "center", marginTop: "0.5rem" }}>
-                  <ShieldCheck size={16} style={{ color: "var(--color-gold-bright)" }} />
-                  <span style={{ fontSize: "var(--text-xs)", color: "var(--text-light-muted)" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    justifyContent: "center",
+                    marginTop: "0.5rem",
+                    textAlign: "center",
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <ShieldCheck size={16} style={{ color: "var(--color-gold-bright)", flexShrink: 0 }} />
+                  <span style={{ fontSize: "var(--text-xs)", color: "var(--text-light-muted)", lineHeight: 1.4 }}>
                     Direct liaison with Aveehra founding office • No obligation
                   </span>
                 </div>
@@ -290,12 +311,12 @@ export default function InstitutionalLeadForm() {
           <div>
             <div style={{ marginBottom: "1.5rem" }}>
               <span className="brand-badge">FREQUENTLY ASKED QUESTIONS</span>
-              <h3 style={{ fontSize: "var(--text-2xl)", color: "#FFFFFF", marginTop: "0.75rem" }}>
+              <h3 style={{ fontSize: "var(--text-2xl)", color: "#FFFFFF", marginTop: "0.75rem", textWrap: "balance" }}>
                 Understanding the Circular Partnership
               </h3>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
               {FAQ_ITEMS.map((item, idx) => {
                 const isOpen = activeFaq === idx;
                 return (
@@ -314,21 +335,46 @@ export default function InstitutionalLeadForm() {
                       onClick={() => setActiveFaq(isOpen ? null : idx)}
                       style={{
                         width: "100%",
-                        padding: "1.25rem",
+                        padding: "clamp(0.85rem, 2.5vw, 1.25rem)",
+                        minHeight: "48px",
                         textAlign: "left",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
                         color: isOpen ? "var(--color-gold-bright)" : "#FFFFFF",
-                        fontSize: "var(--text-base)",
+                        fontSize: "clamp(0.9rem, 2vw, 1rem)",
                         fontWeight: 600,
+                        gap: "0.75rem",
                       }}
+                      aria-expanded={isOpen}
                     >
-                      <span>{item.question}</span>
-                      <span style={{ fontSize: "1.25rem", marginLeft: "1rem" }}>{isOpen ? "−" : "+"}</span>
+                      <span style={{ textWrap: "pretty" }}>{item.question}</span>
+                      <span
+                        style={{
+                          fontSize: "1.25rem",
+                          lineHeight: 1,
+                          flexShrink: 0,
+                          width: "24px",
+                          height: "24px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: "rgba(255, 255, 255, 0.05)",
+                          borderRadius: "4px",
+                        }}
+                      >
+                        {isOpen ? "−" : "+"}
+                      </span>
                     </button>
                     {isOpen && (
-                      <div style={{ padding: "0 1.25rem 1.25rem 1.25rem", fontSize: "var(--text-sm)", color: "var(--text-light-secondary)", lineHeight: 1.6 }}>
+                      <div
+                        style={{
+                          padding: "0 clamp(0.85rem, 2.5vw, 1.25rem) clamp(0.85rem, 2.5vw, 1.25rem) clamp(0.85rem, 2.5vw, 1.25rem)",
+                          fontSize: "var(--text-sm)",
+                          color: "var(--text-light-secondary)",
+                          lineHeight: 1.6,
+                        }}
+                      >
                         {item.answer}
                       </div>
                     )}

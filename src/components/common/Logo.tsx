@@ -16,8 +16,9 @@ export default function Logo({ variant = "light", size = "md" }: LogoProps) {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "0.85rem",
+        gap: "clamp(0.5rem, 2vw, 0.85rem)",
         textDecoration: "none",
+        minWidth: 0,
       }}
       aria-label="AVEEHRA Homepage"
     >
@@ -28,7 +29,7 @@ export default function Logo({ variant = "light", size = "md" }: LogoProps) {
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ flexShrink: 0 }}
+        style={{ flexShrink: 0, width: "clamp(28px, 6vw, 36px)", height: "clamp(28px, 6vw, 36px)" }}
       >
         <defs>
           <linearGradient id="aveehraGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -66,27 +67,29 @@ export default function Logo({ variant = "light", size = "md" }: LogoProps) {
       </svg>
 
       {/* Brand Typographic Wordmark */}
-      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1, minWidth: 0 }}>
         <span
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: textSize,
+            fontSize: "clamp(1.05rem, 3.5vw, 1.35rem)",
             fontWeight: 700,
-            letterSpacing: "0.22em",
+            letterSpacing: "0.2em",
             color: variant === "dark" ? "var(--text-dark-primary)" : "var(--text-light-primary)",
             textTransform: "uppercase",
+            whiteSpace: "nowrap",
           }}
         >
           AVEEHRA
         </span>
         <span
           style={{
-            fontSize: subtextSize,
+            fontSize: "clamp(0.48rem, 1.6vw, 0.625rem)",
             fontWeight: 600,
-            letterSpacing: "0.28em",
+            letterSpacing: "clamp(0.12em, 1.2vw, 0.28em)",
             color: "var(--color-gold-bright)",
             textTransform: "uppercase",
             marginTop: "3px",
+            whiteSpace: "nowrap",
           }}
         >
           MYSURU • CIRCULAR UNIFORMS

@@ -16,42 +16,50 @@ export default function ScrollVideo() {
   useGSAP(() => {
     if (!videoRef.current || !containerRef.current || !maskGroupRef.current) return;
 
+    const isMobile = window.innerWidth < 768;
+    const scrollDistance = isMobile ? "+=1800" : "+=3500";
+
     // Pin the container for the duration of the scrub
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=4000", // 4000px of scrolling for an epic transition
+        end: scrollDistance,
         scrub: 1, // Smooth scrubbing
         pin: true,
       },
     });
 
-    // 1. Scrub the Video Time
-    videoRef.current.onloadedmetadata = () => {
-      const duration = videoRef.current!.duration || 10;
+    // 1. Scrub the Video Time safely across mobile and desktop
+    const setupVideoScrub = () => {
+      if (!videoRef.current) return;
+      const duration = videoRef.current.duration || 10;
       tl.fromTo(
         videoRef.current,
         { currentTime: 0 },
         { currentTime: duration, ease: "none" },
-        0 // start at 0
+        0
       );
     };
 
+    if (videoRef.current.readyState >= 1) {
+      setupVideoScrub();
+    } else {
+      videoRef.current.onloadedmetadata = setupVideoScrub;
+    }
+
     // 2. Animate the SVG Text Mask Scale (Zoom Through)
-    // We scale the <g> element wrapping the text so that it expands massively
-    // until the transparent cut-out covers the entire screen.
     tl.to(
       maskGroupRef.current,
       {
-        scale: 150, // Massive scale to zoom entirely through the text
+        scale: isMobile ? 80 : 150,
         transformOrigin: "center center",
         ease: "power2.inOut",
       },
-      0 // start at 0
+      0
     );
 
-    // 3. Fade out the SVG mask entirely at the end to ensure it doesn't block interactions
+    // 3. Fade out the SVG mask entirely at the end
     tl.to(
       maskGroupRef.current,
       {
@@ -66,7 +74,7 @@ export default function ScrollVideo() {
     if (finalContentRef.current) {
       tl.fromTo(
         finalContentRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 35 },
         { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" },
         "-=0.2"
       );
@@ -126,7 +134,7 @@ export default function ScrollVideo() {
                 textAnchor="middle"
                 dominantBaseline="central"
                 fill="black"
-                fontSize="clamp(4rem, 15vw, 15rem)"
+                fontSize="clamp(2.75rem, 14vw, 15rem)"
                 fontWeight="900"
                 fontFamily="var(--font-sans)"
                 letterSpacing="-0.02em"
@@ -158,15 +166,15 @@ export default function ScrollVideo() {
           color: "#fff",
           zIndex: 20,
           width: "100%",
-          padding: "0 2rem",
+          padding: "0 clamp(1rem, 4vw, 2rem)",
           opacity: 0,
-          pointerEvents: "none", // so it doesn't block scrolling initially
+          pointerEvents: "none",
         }}
       >
-        <h2 style={{ fontSize: "var(--text-5xl)", marginBottom: "1rem", fontFamily: "var(--font-serif)" }}>
+        <h2 style={{ fontSize: "var(--text-5xl)", marginBottom: "1rem", fontFamily: "var(--font-serif)", textWrap: "balance" }}>
           Beyond the Fabric
         </h2>
-        <p style={{ fontSize: "var(--text-xl)", fontWeight: 300, color: "var(--color-gold-bright)" }}>
+        <p style={{ fontSize: "var(--text-xl)", fontWeight: 300, color: "var(--color-gold-bright)", textWrap: "balance" }}>
           A deeper look into our circular philosophy.
         </p>
       </div>

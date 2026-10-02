@@ -104,9 +104,10 @@ export default function BrandManifesto() {
               maxWidth: "850px",
               marginLeft: "auto",
               marginRight: "auto",
+              textWrap: "balance",
             }}
           >
-            &ldquo;Every Uniform Has a Story. <br />
+            &ldquo;Every Uniform Has a Story. <br className="desktop-break" />
             <span className="text-gold-gradient">Every Story Deserves a Second Chapter.&rdquo;</span>
           </h2>
         </div>
@@ -119,7 +120,7 @@ export default function BrandManifesto() {
               ref={imageContainerRef}
               style={{
                 position: "relative",
-                height: "560px",
+                height: "clamp(260px, 48vw, 560px)",
                 borderRadius: "var(--radius-lg)",
                 overflow: "hidden",
                 border: "1px solid var(--glass-border-dark)",
@@ -138,25 +139,26 @@ export default function BrandManifesto() {
                 style={{
                   position: "absolute",
                   inset: 0,
-                  background: "linear-gradient(to top, rgba(6,11,18,0.85) 0%, transparent 60%)",
+                  background: "linear-gradient(to top, rgba(6,11,18,0.9) 0%, transparent 60%)",
                 }}
               />
               <div
                 style={{
                   position: "absolute",
-                  bottom: "2rem",
-                  left: "2rem",
-                  right: "2rem",
+                  bottom: "clamp(1rem, 2.5vw, 2rem)",
+                  left: "clamp(0.85rem, 2.5vw, 2rem)",
+                  right: "clamp(0.85rem, 2.5vw, 2rem)",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "var(--text-xl)",
+                    fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
                     color: "#FFFFFF",
                     fontStyle: "italic",
                     lineHeight: 1.4,
                     marginBottom: "0.5rem",
+                    textWrap: "pretty",
                   }}
                 >
                   &ldquo;A uniform deserves respect throughout its entire life, not only while it is being worn.&rdquo;
@@ -209,30 +211,38 @@ export default function BrandManifesto() {
                 color: "var(--text-light-primary)",
                 marginBottom: "1.25rem",
                 lineHeight: 1.3,
+                textWrap: "balance",
               }}
             >
               What Does a Uniform Truly Represent?
             </h3>
-            <p style={{ marginBottom: "1.75rem", fontSize: "var(--text-base)" }}>
+            <p style={{ marginBottom: "1.25rem", fontSize: "var(--text-base)" }}>
               In every school across India, a uniform is the great equalizer. It strips away economic division, establishes common purpose, and silently witnesses the growth of a human life. 
             </p>
-            <p style={{ marginBottom: "2rem", fontSize: "var(--text-base)" }}>
+            <p style={{ marginBottom: "1.75rem", fontSize: "var(--text-base)" }}>
               When a child outgrows their blazer or shirt, why should that garment be relegated to an unceremonious scrap pile? It deserves reverence, scientific care, and an honorable second journey.
             </p>
 
             {/* 4 Pillars of Representation */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginBottom: "2.5rem" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))",
+                gap: "clamp(0.75rem, 2vw, 1.25rem)",
+                marginBottom: "2rem",
+              }}
+            >
               {representations.map((item) => (
                 <div
                   key={item.title}
                   style={{
-                    padding: "1.15rem",
+                    padding: "clamp(0.85rem, 2vw, 1.15rem)",
                     background: "rgba(255, 255, 255, 0.03)",
                     borderRadius: "var(--radius-md)",
                     border: "1px solid var(--glass-border-dark)",
                   }}
                 >
-                  <item.icon size={22} style={{ color: "var(--color-gold-bright)", marginBottom: "0.5rem" }} />
+                  <item.icon size={20} style={{ color: "var(--color-gold-bright)", marginBottom: "0.5rem" }} />
                   <h4 style={{ fontSize: "var(--text-sm)", color: "#FFFFFF", marginBottom: "0.25rem" }}>
                     {item.title}
                   </h4>
@@ -246,7 +256,7 @@ export default function BrandManifesto() {
             {/* The Etymology Explanation Box */}
             <div
               style={{
-                padding: "1.5rem",
+                padding: "clamp(1.15rem, 3vw, 1.5rem)",
                 borderRadius: "var(--radius-md)",
                 background: "linear-gradient(135deg, rgba(197, 155, 39, 0.1) 0%, rgba(10, 18, 29, 0.5) 100%)",
                 border: "1px solid var(--color-gold-border)",

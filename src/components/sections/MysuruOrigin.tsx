@@ -21,12 +21,14 @@ export default function MysuruOrigin() {
   useGSAP(() => {
     // 1. Text Stagger Reveal
     if (leftColumnRef.current) {
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
       gsap.fromTo(
         leftColumnRef.current.children,
-        { opacity: 0, x: -30 },
+        { opacity: 0, x: isMobile ? 0 : -30, y: isMobile ? 30 : 0 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 0.8,
           stagger: 0.15,
           ease: "power3.out",
@@ -189,7 +191,7 @@ export default function MysuruOrigin() {
               ref={imageContainerRef}
               style={{
                 position: "relative",
-                height: "560px",
+                height: "clamp(260px, 48vw, 560px)",
                 borderRadius: "var(--radius-lg)",
                 overflow: "hidden",
                 border: "1px solid var(--glass-border-dark)",
@@ -231,12 +233,12 @@ export default function MysuruOrigin() {
                 ref={imageOverlayRef}
                 style={{
                   position: "absolute",
-                  bottom: "2rem",
-                  left: "2rem",
-                  right: "2rem",
+                  bottom: "clamp(1rem, 2.5vw, 2rem)",
+                  left: "clamp(0.85rem, 2.5vw, 2rem)",
+                  right: "clamp(0.85rem, 2.5vw, 2rem)",
                   background: "rgba(10, 18, 29, 0.88)",
                   backdropFilter: "blur(14px)",
-                  padding: "1.5rem",
+                  padding: "clamp(1rem, 2.5vw, 1.5rem)",
                   borderRadius: "var(--radius-md)",
                   border: "1px solid var(--color-gold-border)",
                   zIndex: 20,
@@ -246,11 +248,12 @@ export default function MysuruOrigin() {
                 <p
                   style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "var(--text-lg)",
+                    fontSize: "clamp(0.95rem, 2.2vw, 1.15rem)",
                     color: "var(--color-gold-bright)",
                     fontStyle: "italic",
-                    lineHeight: 1.4,
+                    lineHeight: 1.45,
                     marginBottom: "0.5rem",
+                    textWrap: "pretty",
                   }}
                 >
                   &ldquo;Every uniform carries the hopes of a family and the identity of an institution. In Mysuru, we
