@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/assets";
 
 interface LogoProps {
   variant?: "light" | "dark";
@@ -35,7 +36,7 @@ export default function Logo({ variant = "light", size = "md", showTagline = tru
         }}
       >
         <Image
-          src="/images/aveehra-icon.png"
+          src={getAssetPath("/images/aveehra-icon.png")}
           alt="Aveehra Crest"
           width={400}
           height={236}

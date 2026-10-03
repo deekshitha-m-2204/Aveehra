@@ -5,6 +5,7 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import { generateStructuredData } from "@/lib/seo";
+import { getAssetPath } from "@/lib/assets";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -45,21 +46,21 @@ export const metadata: Metadata = {
   authors: [{ name: "AVEEHRA Circular Ecosystem" }],
   creator: "AVEEHRA",
   publisher: "AVEEHRA",
-  metadataBase: new URL("https://aveehra.com"),
+  metadataBase: new URL("https://deekshitha-m-2204.github.io"),
   alternates: {
-    canonical: "/",
+    canonical: "/Aveehra/",
   },
   openGraph: {
     title: "AVEEHRA | Pioneering India's Circular Uniform Ecosystem",
     description:
       "Pioneering India's circular uniform ecosystem built around Respect, Sustainability, and Social Impact.",
-    url: "https://aveehra.com",
+    url: "https://deekshitha-m-2204.github.io/Aveehra/",
     siteName: "AVEEHRA",
     locale: "en_IN",
     type: "website",
     images: [
       {
-        url: "/images/aveehra-brand-logo.png",
+        url: getAssetPath("/images/aveehra-brand-logo.png"),
         width: 1024,
         height: 576,
         alt: "AVEEHRA - Pioneering India's Circular Uniform Ecosystem",
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     title: "AVEEHRA | Pioneering India's Circular Uniform Ecosystem",
     description:
       "Pioneering India's circular uniform ecosystem. Respect → Extend → Reuse → Recycle.",
-    images: ["/images/aveehra-brand-logo.png"],
+    images: [getAssetPath("/images/aveehra-brand-logo.png")],
   },
   robots: {
     index: true,

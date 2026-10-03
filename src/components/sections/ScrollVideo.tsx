@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/assets";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -100,7 +101,7 @@ export default function ScrollVideo() {
       {/* Fallback Poster Background so screen is never dark/blank while loading */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
         <Image
-          src="/images/hero-craft.jpg"
+          src={getAssetPath("/images/hero-craft.jpg")}
           alt="Artisanal uniform fabric craftsmanship"
           fill
           priority
@@ -124,7 +125,7 @@ export default function ScrollVideo() {
       <video
         ref={videoRef}
         src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-        poster="/images/hero-craft.jpg"
+        poster={getAssetPath("/images/hero-craft.jpg")}
         playsInline
         muted
         preload="auto"

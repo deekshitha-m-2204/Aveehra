@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/assets";
 import { Quote, Heart, Award, Users, BookOpen } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -132,7 +133,7 @@ export default function BrandManifesto() {
               }}
             >
               <Image
-                src="/images/students-campus.jpg"
+                src={getAssetPath("/images/students-campus.jpg")}
                 alt="Students walking with dignity on heritage academy campus in South India"
                 fill
                 sizes="(max-width: 960px) 100vw, 50vw"

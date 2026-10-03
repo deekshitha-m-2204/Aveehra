@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, Sparkles, RefreshCw } from "lucide-react";
+import { getAssetPath } from "@/lib/assets";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -92,7 +93,7 @@ export default function Hero() {
         }}
       >
         <Image
-          src="/images/hero-craft.jpg"
+          src={getAssetPath("/images/hero-craft.jpg")}
           alt="Artisanal uniform tailoring and gold thread inspection"
           fill
           priority

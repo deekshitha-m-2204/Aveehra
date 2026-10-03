@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import { getAssetPath } from "@/lib/assets";
 import { Compass, MapPin, Sparkles, Building, Landmark } from "lucide-react";
 import { MYSURU_ORIGIN_STORY } from "@/content/data";
 import gsap from "gsap";
@@ -201,7 +202,7 @@ export default function MysuruOrigin() {
               {/* The image itself */}
               <Image
                 ref={imageRef}
-                src="/images/mysuru-origin.jpg"
+                src={getAssetPath("/images/mysuru-origin.jpg")}
                 alt="Heritage architectural pillars and morning sunlight in historic Mysuru, Karnataka"
                 fill
                 sizes="(max-width: 960px) 100vw, 50vw"

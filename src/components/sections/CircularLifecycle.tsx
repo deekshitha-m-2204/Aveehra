@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { CheckCircle2, RotateCw, Play, Pause, Sparkles, X, ArrowUpRight, ChevronLeft, ChevronRight, ShieldCheck } from "lucide-react";
+import { getAssetPath } from "@/lib/assets";
 
 interface PhaseData {
   id: number;
@@ -44,7 +45,7 @@ const PHASES: PhaseData[] = [
     ],
     metricValue: "3X",
     metricLabel: "Durability Benchmark for Partner Institutions",
-    imageSrc: "/images/phase1_respect_1789544142836.jpg",
+    imageSrc: getAssetPath("/images/phase1_respect_1789544142836.jpg"),
     imageAlt: "Artisanal uniform fabric weaving with golden thread precision",
     position: "top",
     angleDeg: 270,
@@ -69,7 +70,7 @@ const PHASES: PhaseData[] = [
     ],
     metricValue: "720+",
     metricLabel: "Days of Shared Memories Standard for Partner Institutions",
-    imageSrc: "/images/phase2_extend_1789544254235.jpg",
+    imageSrc: getAssetPath("/images/phase2_extend_1789544254235.jpg"),
     imageAlt: "Students wearing dignified school uniforms in heritage courtyard",
     position: "right",
     angleDeg: 0,
@@ -94,7 +95,7 @@ const PHASES: PhaseData[] = [
     ],
     metricValue: "50%",
     metricLabel: "Dignified Affordability Standard for Partner Institutions",
-    imageSrc: "/images/inspection-lab.jpg",
+    imageSrc: getAssetPath("/images/inspection-lab.jpg"),
     imageAlt: "Clinical inspection and hospital-grade sanitization laboratory",
     position: "bottom",
     angleDeg: 90,
@@ -119,7 +120,7 @@ const PHASES: PhaseData[] = [
     ],
     metricValue: "0%",
     metricLabel: "Landfill Waste Standard for Partner Institutions",
-    imageSrc: "/images/phase4_recycle_1789544284338.jpg",
+    imageSrc: getAssetPath("/images/phase4_recycle_1789544284338.jpg"),
     imageAlt: "Regenerated closed-loop textile yarn spun from post-consumer uniforms",
     position: "left",
     angleDeg: 180,
@@ -620,7 +621,7 @@ export default function CircularLifecycle() {
           <div className="mobile-ecosystem-header glass-card">
             <div style={{ position: "relative", width: "42px", height: "26px", margin: "0 auto 0.5rem" }}>
               <Image
-                src="/images/aveehra-icon.png"
+                src={getAssetPath("/images/aveehra-icon.png")}
                 alt="Aveehra Crest"
                 width={400}
                 height={236}

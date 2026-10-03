@@ -6,8 +6,8 @@ export function generateStructuredData() {
     "@type": "Organization",
     name: BRAND_CONFIG.name,
     description: "Pioneering India's circular uniform ecosystem built around Respect, Sustainability, and Social Impact.",
-    url: "https://aveehra.com",
-    logo: "https://aveehra.com/images/aveehra-brand-logo.png",
+    url: "https://deekshitha-m-2204.github.io/Aveehra/",
+    logo: "https://deekshitha-m-2204.github.io/Aveehra/images/aveehra-brand-logo.png",
     foundingLocation: {
       "@type": "Place",
       address: {

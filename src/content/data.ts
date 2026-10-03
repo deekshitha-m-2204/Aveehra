@@ -1,4 +1,5 @@
 import { ImpactMetric, LifecyclePhase, Pillar, SchoolPartner } from "@/types";
+import { getAssetPath } from "@/lib/assets";
 
 export const BRAND_CONFIG = {
   name: "AVEEHRA",
@@ -26,7 +27,7 @@ export const LIFECYCLE_PHASES: LifecyclePhase[] = [
     subtitle: "Engineered for Multi-Year Longevity",
     mantra: "Circularity Begins at the Loom",
     description: "Before a uniform can have a second journey, it must be built to survive its first. We engineer fabrics with high-tensile yarn, reinforced seams, and non-toxic skin-safe dyes designed for Indian climates.",
-    imageSrc: "/images/phase1_respect_1789544142836.jpg",
+    imageSrc: getAssetPath("/images/phase1_respect_1789544142836.jpg"),
     imageAlt: "Macro shot of premium dark navy uniform fabric being woven on a traditional loom with golden threads.",
     details: [
       "Custom high-density cotton & combed fiber blends",
@@ -43,7 +44,7 @@ export const LIFECYCLE_PHASES: LifecyclePhase[] = [
     subtitle: "The Student Journey & Daily Life",
     mantra: "Witness to Childhood & Character",
     description: "A uniform is never merely cloth. It witnesses morning assemblies, sports day victories, science labs, friendships, and childhood dreams. It carries the quiet devotion and financial effort of parents.",
-    imageSrc: "/images/phase2_extend_1789544254235.jpg",
+    imageSrc: getAssetPath("/images/phase2_extend_1789544254235.jpg"),
     imageAlt: "Student wearing a crisp navy uniform standing proudly in a heritage school courtyard in Mysuru.",
     details: [
       "Institutional pride & equality across the classroom",
@@ -60,7 +61,7 @@ export const LIFECYCLE_PHASES: LifecyclePhase[] = [
     subtitle: "The Certified Second Chapter (~50% Pricing)",
     mantra: "Respect Always Precedes Recycling",
     description: "When a student outgrows their uniform, its journey must not end in a landfill. Through white-glove institutional collection drives, garments undergo multi-point inspection, hospital-grade sanitization, and mending. Reusable uniforms are made available at approximately half price.",
-    imageSrc: "/images/inspection-lab.jpg",
+    imageSrc: getAssetPath("/images/inspection-lab.jpg"),
     imageAlt: "Garment regeneration, sanitization and white-glove inspection in a pristine lab.",
     details: [
       "Turnkey, seasonal collection kiosks directly on school campuses",
@@ -77,7 +78,7 @@ export const LIFECYCLE_PHASES: LifecyclePhase[] = [
     subtitle: "Closed-Loop Textile Regeneration",
     mantra: "Zero Landfill, Full Account",
     description: "Recycling is never our first resort—we extend and reuse first. But when a uniform is physically worn beyond safe, dignified reuse, it enters certified responsible recycling pathways, transforming into acoustic panels or regenerated yarn.",
-    imageSrc: "/images/phase4_recycle_1789544284338.jpg",
+    imageSrc: getAssetPath("/images/phase4_recycle_1789544284338.jpg"),
     imageAlt: "Abstract visualization of recycled textile fibers regenerating into architectural acoustic panels.",
     details: [
       "Strict grading criteria ensuring only unwearable garments enter recycling",
